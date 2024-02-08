@@ -9,8 +9,9 @@ const getTodosFromLS = () => {
 
     if (data) {
       return JSON.parse(data);
+
     }
-    else{
+    else {
       return [];
     }
   };
@@ -35,16 +36,16 @@ export default function Form() {
           ID: number;
           TodoValue: string;
           completed: boolean;
-        }
+        };
     
         let todoObject: TodoObjectProps = {
           ID: time,
           TodoValue: todoValue,
           completed: false
-        }
+        };
         setTodos([...todos, todoObject]);
         setTodoValue('');
-      }
+      };
 
       useEffect(() => {
         localStorage.setItem('Todos', JSON.stringify(todos));
@@ -54,25 +55,25 @@ export default function Form() {
 
       interface Todo {
         ID: number;
-      }
-
+      };
 
       const handleDelete = (id: number): void => {
         const filtered: Todo = todos.filter((todo: Todo) => {
           return todo.ID !== id;
-        })
+
+        });
         setTodos(filtered);
-      }
+      };
 
       interface HandleEditProps {
         TodoValue: string;
-      }
+      };
 
       const handleEdit = (todo: HandleEditProps, index: number): void => {
         setEditForm(true);
         setId(index);
         setTodoValue(todo.TodoValue);
-      }
+      };
 
       const handleEditSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -86,21 +87,25 @@ export default function Form() {
         setEditForm(false);
       }
 
-      const handleCheckbox = (id: any) => {
-        let todoArray: any[] = [];
-        todos.forEach((todo: { ID: any; completed: boolean; })=>{
-          if(todo.ID === id){
-            if(todo.completed === false){
+
+      const handleCheckbox = (id: number): void => {
+        
+        let todoArray: object[] = [];
+
+        todos.forEach((todo: { ID: number; completed: boolean; }) => {
+          if (todo.ID === id) {            
+            if (todo.completed === false) {
               todo.completed = true;
-            }
-            else if(todo.completed === true){
+
+            } else if (todo.completed === true) {
               todo.completed = false;
-            }
-          }
+
+            };
+          };
           todoArray.push(todo);
           setTodos(todoArray);
-        })
-      }
+        });
+      };
 
     return (
         <Flex 
@@ -120,66 +125,63 @@ export default function Form() {
                     todoValue={todoValue} 
                     EditForm={true} />
               )}
-              {todos.length > 0 && (
-                  <Flex 
-                    width={"360px"} 
-                    flexDirection={"column"} 
-                    marginTop={"31px"}>
-                      {todos.map((individualTodo: {
-                          completed: boolean; 
-                          ID: number; 
-                          TodoValue: string
-                          }, index: any) => (
-                            <MotionFlex
-                              variants={animationItem} 
-                              key={individualTodo.ID} 
-                              background={"#340a75"} 
-                              border={"1px solid #7720ff"} 
-                              borderRadius={"4px"} 
-                              boxShadow={"10px 10px 14px 1px rgba(00,00,00,0.2)"} 
-                              margin={"15px 0"} 
-                              padding={"8px 10px"} 
-                              justifyContent={"space-between"} 
-                              alignItems={"center"}>
-                                <Flex 
-                                  alignItems={"center"}>
-                                    {editForm === false && (
-                                      <input 
-                                        type="checkbox" 
-                                        checked={individualTodo.completed} 
-                                        onChange={() => handleCheckbox(individualTodo.ID)}>
-                                      </input>
-                                    )}
-                                    <Text
-                                      fontSize={"20px"} 
-                                      fontWeight={"400"} 
-                                      display={"flex"}
-                                      marginLeft={"10px"}
-                                      whiteSpace={"nowrap"}
-                                      overflow={"hidden"}
-                                      overflowX={"auto"} 
-                                      style={individualTodo.completed ? {textDecoration : 'line-through'} : {textDecoration:'none'}}>
-                                        {individualTodo.TodoValue}
-                                    </Text>
-                                </Flex>
-                                {editForm === false && (
-                                    <Flex
-                                      alignItems={"center"}>
-                                      <Box 
-                                        marginRight="7px" 
-                                        onClick={() => handleEdit(individualTodo, index)}>
-                                          <EditIcon w={18}/>
-                                      </Box>
-                                      <Box 
-                                        onClick={() => handleDelete(individualTodo.ID)}>
-                                          <DeleteIcon w={18}/>
-                                      </Box>
-                                    </Flex>
-                                )}
-                            </MotionFlex>
-                        ))}
-                  </Flex>
-              )}
+                <Flex 
+                  width={"360px"} 
+                  flexDirection={"column"} 
+                  marginTop={"31px"}>
+                    {todos.map((individualTodo: {
+                        completed: boolean; 
+                        ID: number; 
+                        TodoValue: string
+                        }, index: any) => (
+                          <MotionFlex
+                            variants={animationItem} 
+                            key={individualTodo.ID} 
+                            background={"#340a75"} 
+                            border={"1px solid #7720ff"} 
+                            borderRadius={"4px"} 
+                            boxShadow={"10px 10px 14px 1px rgba(00, 00, 00, 0.2)"} 
+                            margin={"15px 0"} 
+                            padding={"8px 10px"} 
+                            justifyContent={"space-between"} 
+                            alignItems={"center"}>
+                              <Flex 
+                                alignItems={"center"}>
+                                  <input
+                                    style={editForm ? { display: "none"} : {display: "inline-block"}} 
+                                    type="checkbox" 
+                                    checked={individualTodo.completed} 
+                                    onChange={() => handleCheckbox(individualTodo.ID)}>
+                                  </input>
+                                  <Text
+                                    fontSize={"20px"} 
+                                    fontWeight={"400"} 
+                                    display={"flex"}
+                                    marginLeft={"10px"}
+                                    whiteSpace={"nowrap"}
+                                    overflow={"hidden"}
+                                    overflowX={"auto"} 
+                                    style={individualTodo.completed ? {textDecoration : 'line-through'} : {textDecoration:'none'}}>
+                                      {individualTodo.TodoValue}
+                                  </Text>
+                              </Flex>
+                              <Box
+                                display={editForm ? "none" : "flex"}
+                                alignItems={"center"}>
+                                <Box 
+                                  marginRight="7px" 
+                                  onClick={() => handleEdit(individualTodo, index)}>
+                                    <EditIcon w={18}/>
+                                </Box>
+                                <Box 
+                                  onClick={() => handleDelete(individualTodo.ID)}>
+                                    <DeleteIcon w={18}/>
+                                </Box>
+                              </Box>
+                          </MotionFlex>
+                      ))}
+                </Flex>
+              
           </Flex>
         
     );
