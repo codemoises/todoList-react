@@ -6,6 +6,7 @@ export default function Header() {
           as={"h1"} 
           fontFamily={"'Poppins', sans-serif"} 
           fontSize={["48px", "48px", "48px", "80px", "80px"]} 
+          textTransform={"uppercase"}
           marginTop={"46px"}>
             TODO app
         </Heading>
