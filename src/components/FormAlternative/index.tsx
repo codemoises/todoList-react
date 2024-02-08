@@ -1,5 +1,5 @@
 import { AddIcon, CheckIcon } from "@chakra-ui/icons";
-import { Button, FormControl, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { FormControl, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FormEventHandler } from "react";
 
 interface EditFormProps {
