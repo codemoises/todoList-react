@@ -141,7 +141,7 @@ export default function Form() {
                             border={"1px solid #7720ff"} 
                             borderRadius={"4px"} 
                             boxShadow={"10px 10px 14px 1px rgba(00, 00, 00, 0.2)"} 
-                            margin={"15px 0"} 
+                            margin={"12px 0"} 
                             padding={"8px 10px"} 
                             justifyContent={"space-between"} 
                             alignItems={"center"}>
@@ -181,9 +181,7 @@ export default function Form() {
                           </MotionFlex>
                       ))}
                 </Flex>
-              
           </Flex>
-        
     );
 };
 
