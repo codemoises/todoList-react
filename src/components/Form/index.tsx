@@ -49,7 +49,6 @@ export default function Form() {
 
       useEffect(() => {
         localStorage.setItem('Todos', JSON.stringify(todos));
-        console.log(todos);
         
       }, [todos]);
 
