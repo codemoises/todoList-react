@@ -34,7 +34,7 @@ export default function FormAlternative({ onSubmit, handleChangeCallback, todoVa
                     color={"#fff"}
                     border={"0"}
                     placeholder={EditForm ? '' : 'Adicionar uma tarefa'}
-                    _placeholder={{ color: '#fff' }}
+                    _placeholder={{ color: '#ffffff47' }}
                     required
                     onChange={(e) => handleChangeCallback(e.target.value)}
                     value={todoValue}
